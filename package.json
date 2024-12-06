@@ -9,11 +9,8 @@
         "concurrently": "^9.1.0"
     },
     "dependencies": {
-<<<<<<< HEAD
         "axios": "^1.7.9",
-=======
         "jsonwebtoken": "^9.0.2",
->>>>>>> 8e7fda95616620c4f8bcba84be1e0439bd6a46b4
         "react-router-dom": "^7.0.1"
     }
 }

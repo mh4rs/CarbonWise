@@ -21,6 +21,20 @@ h3 {
     font-weight: 200;
 }
 
+.footprint-equivalent p {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.inline-footprint-image {
+    width: 40px;
+    height: auto;
+    margin: 0 5px;
+}
+
 .image-row {
     margin-top: 20px;
 }

@@ -22,9 +22,23 @@ const Dashboard = () => {
                 <div className="results-container">
                     <p>The following carbon footprint score has been calculated based on your quiz answers. The American and Global averages can be used to see how your score compares to individuals around the world.</p>
                     
+                    {/* One footprint = one ton CO2 */}
+                    <div className="footprint-equivalent">
+                        <p>
+                            One 
+                            <img 
+                                src={footprints} 
+                                alt="Green Footprint" 
+                                className="inline-footprint-image" 
+                            /> 
+                            = One Ton CO₂
+                        </p>
+                    </div>
+
+
                     <div className="image-row">
                         <h3>Your Footprint:</h3>
-                        <p>Your total carbon footprint is <strong>{totalEmissions.toFixed(2)}</strong> tons CO2/year.</p>
+                        <p>Your total carbon footprint is <strong>{totalEmissions.toFixed(2)}</strong> tons CO₂/year.</p>
                         <div className="image-container">
                             {userEmissionsArray.map((_, index) => (
                                 <img
@@ -37,7 +51,7 @@ const Dashboard = () => {
                         </div>
                         
                         <h3>Average American's Footprint:</h3>
-                        <p>The average American's carbon footprint is <strong>16</strong> tons CO2/year.</p>
+                        <p>The average American's carbon footprint is <strong>16</strong> tons CO₂/year.</p>
                         <div className="image-container">
                             {averageUSEmissionsArray.map((_, index) => (
                                 <img
@@ -50,7 +64,7 @@ const Dashboard = () => {
                         </div>
 
                         <h3>Average Global Footprint:</h3>
-                        <p>The average global carbon footprint is <strong>4</strong> tons CO2/year.</p>
+                        <p>The average global carbon footprint is <strong>4</strong> tons CO₂/year.</p>
                         <div className="image-container">
                             {averageGlobalEmissionsArray.map((_, index) => (
                                 <img

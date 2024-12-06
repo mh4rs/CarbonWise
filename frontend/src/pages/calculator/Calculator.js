@@ -107,10 +107,10 @@ const Calculator = () => {
             <h1>Carbon Footprint Calculator</h1>
             <div className='calculator-container'>
 
-                <div className='description-container'>
-                    <p>Start reducing your carbon footprint by understanding your overall carbon footprint score.</p>
-                    <p>Answer a few quick questions about your daily habits, and the calculator will provide resources and recommendations based on your score!</p>
-                </div>
+            <div className='description-container'>
+                <p>Start reducing your carbon footprint by understanding your overall carbon footprint score.
+                Answer a few quick questions about your daily habits, and the calculator will provide resources and recommendations based on your score!</p>
+            </div>
 
             <form className="form-group" onSubmit={handleSubmit}>
                 {sections.map((section) => (

@@ -163,24 +163,32 @@ const Admin = () => {
                             
                             <div className="resource-input">
                                 <p style={{ fontWeight: 'bold', fontSize: '24px', marginBottom: '4px' }}>Add New Resource</p>
-                                <TextInput label="Name" name="name" onChange={handleChange}/>
-                                <TextInput label="Description" name="description" onChange={handleChange}/>
-                                <Dropdown
-                                label="Eco-Friendly"
-                                name="eco-friendly"
-                                options= {['Yes', 'No']}
-                                onChange={handleChange}
-                                />
-                                <Dropdown
-                                label="Category"
-                                name="category"
-                                options= {['Grocery Store', 'Clothes Market', 'Bike/Walk Trail', 'Biking Trail', 'Public Transportation']}
-                                onChange={handleChange}
-                                />
-                                <TextInput label="Address" name="address" onChange={handleChange}/>
-                                <TextInput label="Website" name="website" onChange={handleChange}/>
-                                <TextInput label="Hours of Operation" name="hours of operation" onChange={handleChange}/>
-                                <TextInput label="Image Link" name="image link" onChange={handleChange}/>
+                                {/* handleClose will change to handleSubmit */}
+                                <form className="form-group" onSubmit={handleClose}>
+                                    <TextInput label="Name" name="name" onChange={handleChange}/>
+                                    <TextInput label="Description" name="description" onChange={handleChange}/>
+                                    <Dropdown
+                                    label="Eco-Friendly"
+                                    name="eco-friendly"
+                                    options= {['Yes', 'No']}
+                                    onChange={handleChange}
+                                    />
+                                    <Dropdown
+                                    label="Category"
+                                    name="category"
+                                    options= {['Grocery Store', 'Clothes Market', 'Bike/Walk Trail', 'Biking Trail', 'Public Transportation']}
+                                    onChange={handleChange}
+                                    />
+                                    <TextInput label="Address" name="address" onChange={handleChange}/>
+                                    <TextInput label="Website" name="website" onChange={handleChange}/>
+                                    <TextInput label="Hours of Operation" name="hours of operation" onChange={handleChange}/>
+                                    <TextInput label="Image Link" name="image link" onChange={handleChange}/>
+                                    <Button
+                                        label="Submit"
+                                        onClick={handleClose}
+                                        variant="primary"
+                                    />
+                                </form>
                             </div>
                         </div>
                     </div>

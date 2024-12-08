@@ -1,4 +1,73 @@
 .table-container {
-    display: flex;
+    display: grid;
+    flex-direction: column;
     justify-content: center;
+}
+
+.modal-container {
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ECF4DB;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
+.modal.open {
+    display: block;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-container {
+    position: relative;
+}
+
+.modal-container .overlay {
+    display: none;
+}
+
+.modal-container .overlay.open {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.close-button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: right;
+    border: none;
+    border-radius: 100%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.resource-input {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    gap: 10px;
 }

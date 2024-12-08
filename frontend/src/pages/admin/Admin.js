@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
 import { Box, Table, TableBody, TableContainer, TableHead, TableRow, TableCell, tableCellClasses, Paper, TableFooter, TablePagination, IconButton } from '@mui/material';
@@ -6,6 +6,9 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import Button from '../../components/Button';
+import TextInput from '../../components/Forms/TextInput';
+import Dropdown from '../../components/Forms/Dropdown';
 import './Admin.css';
 
 function createData(name, description, eco_friendly, category, address, website, hours_of_operation, image,
@@ -100,6 +103,16 @@ TablePaginationActions.propTypes = {
 const Admin = () => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [answers, setAnswers] = useState({});
+
+    const handleOpen = () => {
+        setIsModalOpen(true);
+    }
+
+    const handleClose = () => {
+        setIsModalOpen(false);
+    }
 
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -113,11 +126,67 @@ const Admin = () => {
         setPage(0);
     };
 
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setAnswers((prev) => ({ ...prev, [name]: value }));
+    };
+
     return (
         <div className="container">
             <h1>Resource Dashboard</h1>
 
             <div className="table-container">
+                {/* add new resource modal */}
+                <div className="modal-container">
+                    {/* open modal on button click */}
+                    <Button
+                        label="Add New Resource"
+                        onClick={handleOpen}
+                        variant="primary"
+                        style={{ fontSize: '20px', width: '250px', fontWeight: '200' }}
+                    />
+
+                    {/* modal overlay */}
+                    <div className={`overlay ${isModalOpen ? 'open' : ''}`} onClick={handleClose}></div>
+                    
+                    {/* modal content */}
+                    <div className={`modal ${isModalOpen ? 'open' : ''}`}>
+                        <div className="modal-content">
+                            <div className="close-button">
+                                <Button
+                                    label="x"
+                                    onClick={handleClose}
+                                    variant="primary"
+                                    style={{ fontSize: '20px', width: '20px', height: '40px', fontWeight: '200', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0' }}
+                                />
+                            </div>
+                            
+                            <div className="resource-input">
+                                <p style={{ fontWeight: 'bold', fontSize: '24px', marginBottom: '4px' }}>Add New Resource</p>
+                                <TextInput label="Name" name="name" onChange={handleChange}/>
+                                <TextInput label="Description" name="description" onChange={handleChange}/>
+                                <Dropdown
+                                label="Eco-Friendly"
+                                name="eco-friendly"
+                                options= {['Yes', 'No']}
+                                onChange={handleChange}
+                                />
+                                <Dropdown
+                                label="Category"
+                                name="category"
+                                options= {['Grocery Store', 'Clothes Market', 'Bike/Walk Trail', 'Biking Trail', 'Public Transportation']}
+                                onChange={handleChange}
+                                />
+                                <TextInput label="Address" name="address" onChange={handleChange}/>
+                                <TextInput label="Website" name="website" onChange={handleChange}/>
+                                <TextInput label="Hours of Operation" name="hours of operation" onChange={handleChange}/>
+                                <TextInput label="Image Link" name="image link" onChange={handleChange}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* resource database */}
                 <TableContainer component={Paper} style={{width: '80%', margin: 'auto', marginBottom: '36px' }}>
                     <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                         <TableHead>

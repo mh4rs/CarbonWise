@@ -65,7 +65,7 @@
     cursor: pointer;
 }
 
-.resource-input {
+.form-group {
     width: 100%;
     display: grid;
     justify-content: center;

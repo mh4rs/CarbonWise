@@ -48,8 +48,26 @@ const Calculator = () => {
     };
 
     const handleSubmit = async (event) => {
+        const predefinedQuestions = [
+            'address1', 'address2', 'city', 'state', 'zipcode',
+            'householdSize', 'electricity', 'naturalGas', 'fuelOil', 
+            'Propane', 'water', 'trash', 'recycle', 'vehicles', 
+            'publicTransport', 'shortFlights', 'longFlights', 
+            'diet', 'groceries', 'eatOut', 'clothes', 'electronics', 
+            'homeGoods', 'gym', 'carbonOffset', 'renewableEnergy'
+        ];
+
         event.preventDefault();
         console.log(answers);
+
+        const incompleteAnswers = predefinedQuestions.some(
+            (question) => !answers[question] || answers[question] === 'Select value'
+        );
+    
+        if (incompleteAnswers) {
+            alert("Please complete all fields before submitting the form.");
+            return; // Stop execution if the form is incomplete
+        }
 
         const token = getToken();
 
@@ -68,14 +86,6 @@ const Calculator = () => {
         // pass score to dashboard page for display
         navigate('/dashboard', { state: { totalEmissions: total } });
 
-        const predefinedQuestions = [
-            'address1', 'address2', 'city', 'state', 'zipcode',
-            'householdSize', 'electricity', 'naturalGas', 'fuelOil', 
-            'Propane', 'water', 'trash', 'recycle', 'vehicles', 
-            'publicTransport', 'shortFlights', 'longFlights', 
-            'diet', 'groceries', 'eatOut', 'clothes', 'electronics', 
-            'homeGoods', 'gym', 'carbonOffset', 'renewableEnergy'
-        ];
 
         const responses = predefinedQuestions.map((question_id) => ({
             question_id,
@@ -198,6 +208,8 @@ const Calculator = () => {
             <div className='description-container'>
                 <p>Start reducing your carbon footprint by understanding your overall carbon footprint score.
                 Answer a few quick questions about your daily habits, and the calculator will provide resources and recommendations based on your score!</p>
+
+                <p>In order to get the most accurate score, you must provide an answer for every question.</p>
             </div>
 
             <form className="form-group" onSubmit={handleSubmit}>
@@ -234,7 +246,7 @@ const Calculator = () => {
                                 label={q.label}
                                 name={q.id}
                                 value={answers[q.id] || ''}
-                                options={q.options}
+                                options={['Select value', ...q.options]}
                                 onChange={handleChange}
                                 />
                             );

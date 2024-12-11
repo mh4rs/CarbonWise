@@ -109,7 +109,27 @@ const Dashboard = () => {
                         address="123 Street, Dearborn, MI"
                     />
 
-                    <h2>Additional Dearborn-Based Resources</h2>
+                    <h1>Additional Dearborn-Based Resources</h1>
+
+                    <h2>Clothes Markets</h2>
+                    <ResourceCarousel 
+                        resources={resources} 
+                            containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}
+                    />
+
+                    <h2>Grocery Stores</h2>
+                    <ResourceCarousel 
+                        resources={resources} 
+                            containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}
+                    />
+
+                    <h2>Natural Trails</h2>
+                    <ResourceCarousel 
+                        resources={resources} 
+                            containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}
+                    />
+
+                    <h2>Public Transport</h2>
                     <ResourceCarousel 
                         resources={resources} 
                             containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}

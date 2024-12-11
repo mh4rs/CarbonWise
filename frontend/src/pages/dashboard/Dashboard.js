@@ -2,6 +2,9 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import footprints from './footprints.png';
+import ResourceCarousel from '../../components/Carousel';
+import ResourceCard from '../../components/Card';
+import hinespark from './hinespark.jpg';
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -14,6 +17,14 @@ const Dashboard = () => {
     const userEmissionsArray = totalEmissions ? Array(Math.round(totalEmissions)).fill(null) : [];
     const averageUSEmissionsArray = Array(averageUSEmissions).fill(null);
     const averageGlobalEmissionsArray = Array(averageGlobalEmissions).fill(null);
+
+    const resources = [
+        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
+        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
+        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
+        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
+        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
+    ]
 
     return (
         <div className="centered-container">
@@ -78,7 +89,31 @@ const Dashboard = () => {
                     </div>
 
                     <h1>Sustainability Recommendations</h1>
-                    <p>Here are some recommendations to offset your carbon footprint based on your results.</p>
+                    <h2>Personalized Resources Based on Your Answers</h2>
+                    <p>Here are some resources from the categories you can improve in based on your quiz answers.</p>
+                    
+                    {/* will be automatically populated based on what chatgpt provides */}
+                    <h2>Natural Trails</h2>
+                    <ResourceCard
+                        image={hinespark}
+                        title="Hines Park"
+                        description="The Hines Park Trail includes a 20-mile connection from Michigan Ave. (Dearborn) to Northville, featuring paved paths, parks, dog areas, and picnic facilities. The trail runs parallel to Edward Hines Drive and passes through scenic areas"
+                        address="123 Street, Dearborn, MI"
+                    />
+
+                    <h2>Sustainable Markets</h2>
+                    <ResourceCard
+                        image={hinespark}
+                        title="Hines Park"
+                        description="The Hines Park Trail includes a 20-mile connection from Michigan Ave. (Dearborn) to Northville, featuring paved paths, parks, dog areas, and picnic facilities. The trail runs parallel to Edward Hines Drive and passes through scenic areas"
+                        address="123 Street, Dearborn, MI"
+                    />
+
+                    <h2>Additional Dearborn-Based Resources</h2>
+                    <ResourceCarousel 
+                        resources={resources} 
+                            containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}
+                    />
                 </div>
             ) : (
                 <div>

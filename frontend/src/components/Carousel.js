@@ -64,8 +64,11 @@ const ResourceCarousel = ({ resources }) => {
                 {resources.map((resource, index) => (
                     <ResourceCard 
                         key={index} 
-                        image={resource.image} 
-                        title={resource.title} 
+                        image_url={resource.image_url} 
+                        name={resource.name}
+                        description={resource.description}
+                        address={resource.address}
+                        website={resource.website}
                     />
                 ))}
             </Slider>

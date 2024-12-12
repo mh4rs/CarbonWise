@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
 
 app.use('/api/auth', authRoutes);
 app.use('/api', quizRoutes);
-app.use('/api', resourceRoute);
+app.use('/api/resources', resourceRoute);
 app.use('/api', recommendationsRoute);
 
 // verify server is running

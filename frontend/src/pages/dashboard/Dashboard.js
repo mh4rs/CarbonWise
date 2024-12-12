@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../../components/Button';
 import footprints from './footprints.png';
 import ResourceCarousel from '../../components/Carousel';
 import ResourceCard from '../../components/Card';
 import hinespark from './hinespark.jpg';
 import "./Dashboard.css";
+
+const groupResourcesByCategory = (resources) => {
+    return resources.reduce((acc, resource) => {
+        if (!acc[resource.category]) {
+            acc[resource.category] = [];
+        }
+        acc[resource.category].push(resource);
+        return acc;
+    }, {});
+};
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -18,13 +29,26 @@ const Dashboard = () => {
     const averageUSEmissionsArray = Array(averageUSEmissions).fill(null);
     const averageGlobalEmissionsArray = Array(averageGlobalEmissions).fill(null);
 
-    const resources = [
-        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
-        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
-        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
-        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
-        { image: hinespark, title: 'Resource 1', description: 'test', address: '123 Street, Dearborn, MI' },
-    ]
+    const [groupedResources, setGroupedResources] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchResources = async () => {
+            try {
+                const response = await axios.get('http://localhost:5001/api/resources');
+                const grouped = groupResourcesByCategory(response.data);
+                setGroupedResources(grouped);
+            } catch (error) {
+                console.error('Error fetching resources:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchResources();
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
 
     return (
         <div className="centered-container">
@@ -95,45 +119,29 @@ const Dashboard = () => {
                     {/* will be automatically populated based on what chatgpt provides */}
                     <h2>Natural Trails</h2>
                     <ResourceCard
-                        image={hinespark}
-                        title="Hines Park"
+                        image_url={hinespark}
+                        name="Hines Park"
                         description="The Hines Park Trail includes a 20-mile connection from Michigan Ave. (Dearborn) to Northville, featuring paved paths, parks, dog areas, and picnic facilities. The trail runs parallel to Edward Hines Drive and passes through scenic areas"
                         address="123 Street, Dearborn, MI"
                     />
 
                     <h2>Sustainable Markets</h2>
                     <ResourceCard
-                        image={hinespark}
-                        title="Hines Park"
+                        image_url={hinespark}
+                        name="Hines Park"
                         description="The Hines Park Trail includes a 20-mile connection from Michigan Ave. (Dearborn) to Northville, featuring paved paths, parks, dog areas, and picnic facilities. The trail runs parallel to Edward Hines Drive and passes through scenic areas"
                         address="123 Street, Dearborn, MI"
                     />
 
                     <h1>Additional Dearborn-Based Resources</h1>
-
-                    <h2>Clothes Markets</h2>
-                    <ResourceCarousel 
-                        resources={resources} 
-                            containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}
-                    />
-
-                    <h2>Grocery Stores</h2>
-                    <ResourceCarousel 
-                        resources={resources} 
-                            containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}
-                    />
-
-                    <h2>Natural Trails</h2>
-                    <ResourceCarousel 
-                        resources={resources} 
-                            containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}
-                    />
-
-                    <h2>Public Transport</h2>
-                    <ResourceCarousel 
-                        resources={resources} 
-                            containerStyle={{ marginLeft: '0px', paddingLeft: '0px'}}
-                    />
+                    <div>
+                        {Object.entries(groupedResources).map(([category, resources]) => (
+                            <div key={category}>
+                                <h2>{category}</h2>
+                                <ResourceCarousel resources={resources} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             ) : (
                 <div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ResourceCard = ({ image, title, description, address, link }) => {
+const ResourceCard = ({ image_url, name, description, address, website }) => {
     const [isDescriptionVisible, setDescriptionVisible] = useState(false);
 
     const handleCardClick = () => {
@@ -64,13 +64,13 @@ const ResourceCard = ({ image, title, description, address, link }) => {
     return (
         <div style={containerStyle} onClick={handleCardClick}>
             <div style={cardStyle}>
-                <img src={image} alt={title} style={imageStyle} />
-                <h3 style={titleStyle}>{title}</h3>
+                <img src={image_url} alt={name} style={imageStyle} />
+                <h3 style={titleStyle}>{name}</h3>
             </div>
             <div style={descriptionStyle}>
                 <p style={{ marginBottom: '12px' }}>{description}</p>
                 <p style={{ marginBottom: '12px' }}><strong>Address</strong>: {address}</p>
-                <a href='https://www.google.com' style={{ color: '#608A33' }}>Click here for the website!</a>
+                <a href={website} style={{ color: '#608A33' }}>Click here for the website!</a>
             </div>
         </div>
     );

@@ -49,13 +49,13 @@ const Calculator = () => {
 
     const handleSubmit = async (event) => {
         const predefinedQuestions = [
-            'address1', 'address2', 'city', 'state', 'zipcode',
-            'householdSize', 'electricity', 'naturalGas', 'fuelOil', 
-            'Propane', 'water', 'trash', 'recycle', 'vehicles', 
-            'publicTransport', 'shortFlights', 'longFlights', 
-            'diet', 'groceries', 'eatOut', 'clothes', 'electronics', 
+            'address1', 'address2', 'city', 'state', 'zipcode', 
+            'householdSize', 'electricity', 'naturalGas', 'fuelOil',
+            'Propane', 'water', 'trash', 'vehicles', 'publicTransport',
+            'shortFlights', 'longFlights', 'diet', 'recycle',
+            'groceries', 'eatOut', 'clothes', 'electronics', 
             'homeGoods', 'gym', 'carbonOffset', 'renewableEnergy'
-        ];
+        ];
 
         event.preventDefault();
         console.log(answers);

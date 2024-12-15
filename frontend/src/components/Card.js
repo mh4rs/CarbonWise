@@ -9,7 +9,7 @@ const ResourceCard = ({ image_url, name, description, address, website }) => {
 
     const containerStyle = {
         position: 'relative',
-        width: '375px',
+        width: '325px',
         height: '400px',
         overflow: 'hidden',
     };

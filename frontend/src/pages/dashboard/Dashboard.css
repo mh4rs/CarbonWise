@@ -1,8 +1,8 @@
 .results-container {
     align-items: start;
-    margin-left: 140px;
-    margin-right: 120px;
     margin-bottom: 36px;
+    max-width: 1024px;
+    box-sizing: border-box;
 }
 
 img {
@@ -17,7 +17,7 @@ h1 {
 }
 
 h3 {
-    font-weight: 200;
+    font-weight: 500;
 }
 
 .footprint-equivalent p {

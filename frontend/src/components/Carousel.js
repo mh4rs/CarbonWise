@@ -7,7 +7,7 @@ import ResourceCard from './Card';
 
 const ResourceCarousel = ({ resources }) => {
     const [slidesToShow, setSlidesToShow] = useState(4);
-    const cardWidth = 400;
+    const cardWidth = 340;
 
     useEffect(() => {
         const updateSlidesToShow = () => {
@@ -36,7 +36,7 @@ const ResourceCarousel = ({ resources }) => {
     
     const settings = {
         dots: true,
-        infinite: true,
+        infinite: resources.length > slidesToShow,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,

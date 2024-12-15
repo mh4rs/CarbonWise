@@ -16,8 +16,6 @@ const ResourceCarousel = ({ resources }) => {
                 setSlidesToShow(1);
             } else if (width <= 1440) {
                 setSlidesToShow(3);
-            } else {
-                setSlidesToShow(4);
             }
         };
 
@@ -38,7 +36,7 @@ const ResourceCarousel = ({ resources }) => {
         dots: true,
         infinite: resources.length > slidesToShow,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         responsive: [
             {

@@ -283,7 +283,7 @@ const Admin = () => {
                   </TableCell>
                   <TableCell style={{ width: 160 }}>{row.hours_of_operation}</TableCell>
                   <TableCell style={{ maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {row.image}
+                    {row.image_url}
                   </TableCell>
                 </TableRow>
               ))}

@@ -261,7 +261,7 @@ const Admin = () => {
                   <Dropdown
                     label="Eco_Friendly"
                     name="eco_friendly"
-                    options={['TRUE', 'FALSE']}
+                    options={['Select Value', 'TRUE', 'FALSE']}
                     onChange={handleChange}
                   />
                   <Dropdown
